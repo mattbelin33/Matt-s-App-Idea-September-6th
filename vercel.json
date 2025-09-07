@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "career-spark-lite.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/career-spark-lite.html" }
+  ]
+}
