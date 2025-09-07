@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .gradient-blue {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0;
+  }
+}

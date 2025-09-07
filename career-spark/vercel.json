@@ -1,0 +1,14 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "functions": {
+    "app/api/insights/route.ts": {
+      "maxDuration": 10
+    },
+    "app/api/quotes/route.ts": {
+      "maxDuration": 10
+    }
+  }
+}

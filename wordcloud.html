@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Search Trends 2025 - Word Cloud</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        #wordcloud {
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 900px;
+        }
+        h1 {
+            color: #1a73e8;
+            margin-bottom: 30px;
+        }
+        .word {
+            cursor: default;
+            transition: transform 0.2s;
+        }
+        .word:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Top Google Search Topics 2025</h1>
+    <div id="wordcloud"></div>
+
+    <script>
+        // Search terms data
+        const searchTerms = [
+            {text: 'AI', size: 60},
+            {text: 'Technology', size: 55},
+            {text: 'Quantum', size: 50},
+            {text: 'Machine Learning', size: 45},
+            {text: 'Virtual Reality', size: 45},
+            {text: 'Blockchain', size: 40},
+            {text: 'Cybersecurity', size: 40},
+            {text: 'Renewable Energy', size: 40},
+            {text: '5G', size: 38},
+            {text: 'Smart Cities', size: 38},
+            {text: 'Space', size: 35},
+            {text: 'Autonomous', size: 35},
+            {text: 'Robotics', size: 35},
+            {text: 'Web3', size: 32},
+            {text: 'NFT', size: 32},
+            {text: 'Crypto', size: 32},
+            {text: 'Metaverse', size: 38},
+            {text: 'Augmented Reality', size: 36},
+            {text: 'AI Ethics', size: 34},
+            {text: 'Clean Energy', size: 34},
+            {text: 'Biotech', size: 30},
+            {text: '6G', size: 30},
+            {text: 'IoT', size: 30},
+            {text: 'Cloud', size: 28},
+            {text: 'AI Art', size: 28},
+            {text: 'Fusion', size: 26},
+            {text: 'Genomics', size: 26},
+            {text: 'Drones', size: 24},
+            {text: 'Neural', size: 24},
+            {text: 'Autonomous Vehicles', size: 36}
+        ];
+
+        // Set up the word cloud
+        const width = 800;
+        const height = 600;
+
+        const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        const layout = d3.layout.cloud()
+            .size([width, height])
+            .words(searchTerms)
+            .padding(5)
+            .rotate(() => ~~(Math.random() * 2) * 90)
+            .fontSize(d => d.size)
+            .on("end", draw);
+
+        layout.start();
+
+        function draw(words) {
+            d3.select("#wordcloud")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", `translate(${width/2},${height/2})`)
+                .selectAll("text")
+                .data(words)
+                .enter().append("text")
+                .style("font-size", d => `${d.size}px`)
+                .style("font-family", "Arial, sans-serif")
+                .style("fill", (d, i) => color(i))
+                .attr("text-anchor", "middle")
+                .attr("class", "word")
+                .attr("transform", d => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`)
+                .text(d => d.text);
+        }
+    </script>
+</body>
+</html>
