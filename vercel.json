@@ -1,15 +1,14 @@
 {
   "version": 2,
   "builds": [
+    { "src": "career-spark-lite.html", "use": "@vercel/static" },
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "*.js", "use": "@vercel/static" },
     { "src": "*.css", "use": "@vercel/static" },
     { "src": "*.{jpg,png,svg}", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/(.*)", "status": 200, "dest": "/index.html" }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+    { "src": "/", "status": 200, "dest": "/career-spark-lite.html" },
+    { "src": "/(.*)", "dest": "/career-spark-lite.html" }
+  ]
 }
